@@ -16,13 +16,15 @@ const { NotImplementedError } = require("../extensions/index.js");
  *
  */
 function repeater(str, options) {
+  str = str + "";
+  options.addition = String(options.addition);
   if (!options.repeatTimes) {
     options.repeatTimes = 1;
   }
   if (!options.separator) {
     options.separator = "+";
   }
-  if (!options.addition) {
+  if (!options.addition || options.addition === "undefined") {
     options.addition = "";
   }
   if (!options.additionSeparator) {
@@ -34,6 +36,7 @@ function repeater(str, options) {
 
   let res = "";
   let newStr = "";
+
   for (let i = 1; i < options.additionRepeatTimes; i++) {
     res += options.addition + options.additionSeparator;
   }
